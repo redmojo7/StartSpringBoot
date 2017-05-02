@@ -106,7 +106,7 @@ public class QuartzService {
      * 修改一个任务的触发时间(使用默认的任务组名，触发器名，触发器组名)
      *
      * @param jobName
-     * @param time
+     * @param jobName
      * @throws SchedulerException
      * @throws ParseException
      */
@@ -119,9 +119,7 @@ public class QuartzService {
                 .withIdentity(jobName, TRIGGER_GROUP_NAME)
                 .withSchedule(cronSchedule(time))
                 .build();
-        sched.rescheduleJob(TriggerKey.triggerKey(jobName), trigger);
-//        addJob(jobName, new MyJob(),time);
-
+        sched.rescheduleJob(TriggerKey.triggerKey(jobName, TRIGGER_GROUP_NAME), trigger);
     }
 
     /** */
@@ -134,21 +132,13 @@ public class QuartzService {
     public static void removeJob(String jobName)
             throws SchedulerException {
 
-        JobKey jobKey = new JobKey(jobName);
+        JobKey jobKey = JobKey.jobKey(jobName,JOB_GROUP_NAME);
         Scheduler sched = sf.getScheduler();
-
         if (sched.checkExists(jobKey)) {
-            sched.deleteJob(jobKey);
+            TriggerKey triggerKey = TriggerKey.triggerKey(jobName, TRIGGER_GROUP_NAME);
+            sched.pauseTrigger(triggerKey);// 停止触发器
+            sched.unscheduleJob(triggerKey);// 移除触发器
+            sched.deleteJob(jobKey);// 删除任务
         }
-    }
-
-    public void test() {
-//        TriggerBuilder<SimpleTrigger> tb = oldTrigger.getObject().getTriggerBuilder();
-//        int number = new Random().nextInt(10) + 1;
-//        System.out.println("动态改变执行时间为"+number+"秒");
-//        Trigger newTrigger = tb.withSchedule(SimpleScheduleBuilder.repeatSecondlyForever(number)).build();
-//        //Trigger trigger = tb.withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?")).build();
-//        myScheduler.getObject().rescheduleJob(oldTrigger.getObject().getKey(), newTrigger);
-
     }
 }

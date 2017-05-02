@@ -83,13 +83,13 @@ public class QuartzAction {
 
             Thread.sleep(10000);
             System.out.println("【修改时间】");
-            quartzService.modifyJobTime(job_name,"0/10 * * * * ?");
+            quartzService.modifyJobTime(job_name,"0/1 * * * * ?");
             Thread.sleep(20000);
             System.out.println("【移除定时】");
             quartzService.removeJob(job_name);
             Thread.sleep(10000);
 
-            System.out.println("/n【添加定时任务】");
+            System.out.println("【添加定时任务】");
 //            quartzService.addJob(job_name,job,"0/5 * * * * ?");
 
         }  catch (Exception e) {
