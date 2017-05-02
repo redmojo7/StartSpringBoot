@@ -1,15 +1,12 @@
 package com.strat.springboot.Controller.service.quartz;
 
 import com.strat.springboot.Controller.service.QuartzService;
-import org.quartz.CronExpression;
-import org.quartz.CronTrigger;
 import org.quartz.SchedulerException;
 import org.quartz.SchedulerFactory;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
 import org.quartz.impl.StdScheduler;
 import org.quartz.impl.StdSchedulerFactory;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
