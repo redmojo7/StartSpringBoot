@@ -61,14 +61,14 @@ public class QuartzScheduleMain {
 
         // Tell quartz to schedule the job using our trigger
         //设置调度相关的Job
-        sched.scheduleJob(job, trigger);
+
         log.info(job.getKey() + " will run at: " + runTime);
 
         // Start up the scheduler (nothing can actually run until the
         // scheduler has been started)
         //启动调度任务
         sched.start();
-
+        sched.scheduleJob(job, trigger);
         log.info("------- Started Scheduler -----------------");
         try {
             Thread.sleep(25L * 1000L);
