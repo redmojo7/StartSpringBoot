@@ -116,7 +116,7 @@ public class QuartzAction {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> updateJob() {
         quartzJob.setCronExpression(time2);
-        quartzManager.updateQuartzJob(quartzJob, TriggerKey.triggerKey(jobName),
+        quartzManager.updateQuartzJob(quartzJob, TriggerKey.triggerKey(jobName,jobGroup),
                 TriggerBuilder
                         .newTrigger()
                         .withSchedule(cronSchedule(time))

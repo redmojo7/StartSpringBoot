@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.Date;
 
 /**
  * 任务调度管理类
@@ -147,7 +148,7 @@ public class QuartzManager {
             }
             logger.info("任务调度表达式不一致，进行修改");
             CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(job.getCronExpression());
-            trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
+            trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).startAt(new Date()).build();
             scheduler.rescheduleJob(triggerKey, trigger);
         } catch (Exception e) {
             logger.error("修改任务调度中的定时任务异常！" + e.getMessage(), e);

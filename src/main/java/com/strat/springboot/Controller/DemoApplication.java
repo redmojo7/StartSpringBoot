@@ -17,7 +17,7 @@ public class DemoApplication {
 		Scheduler scheduler = null;
 		try {
 			scheduler = StdSchedulerFactory.getDefaultScheduler();
-			// and start it off
+			// and start it off 启动一个调度对象
 			scheduler.start();
 		} catch (SchedulerException e) {
 			e.printStackTrace();
