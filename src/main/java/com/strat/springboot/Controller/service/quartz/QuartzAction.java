@@ -97,11 +97,6 @@ public class QuartzAction {
         }
     }
 
-    @RequestMapping(value="/rereshSheduleTrigger",method=RequestMethod.GET)
-    public void retScheduleJob() throws SchedulerException, ParseException {
-        this.quartzService.test();
-    }
-
     @RequestMapping(value = "/quartz/crateJob",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
