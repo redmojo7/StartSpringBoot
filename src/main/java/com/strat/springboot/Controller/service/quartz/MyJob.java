@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.quartz.Job;
+import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
@@ -19,10 +20,10 @@ public class MyJob  implements Job {
     Date d = new Date();
     String returnstr = DateFormat.format(d);
 
-    public void execute(JobExecutionContext arg0) throws JobExecutionException {
+    public void execute(JobExecutionContext context) throws JobExecutionException {
         // TODO Auto-generated method stub
-
+        JobDetail jobDetail = context.getJobDetail();
         System.out.println(returnstr+"  ★★★★★★★★★★★ "
-                + arg0.getJobDetail().getKey());
+                + context.getJobDetail().getKey());
     }
 }

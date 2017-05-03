@@ -2,6 +2,7 @@ package com.strat.springboot.Controller.service.quartz;
 
 import java.util.Date;
 
+import org.quartz.JobDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.quartz.Job;
@@ -20,9 +21,13 @@ public class HelloJob implements Job {
     public HelloJob() {
     }
 
-    public void execute(JobExecutionContext context)
+    public void execute(JobExecutionContext jobCtx)
             throws JobExecutionException {
-        logger.info("Hello World! - " + new Date());
+        JobDetail jobDetail = jobCtx.getJobDetail();
+        jobCtx.getMergedJobDataMap();
+        jobCtx.getTrigger().getJobDataMap();
+//        logger.info("Hello World! - " + new Date());
+        System.out.println(jobCtx.getTrigger().getKey().toString()+ " triggered. time is:" + (new Date()));
     }
 }
 

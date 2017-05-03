@@ -7,6 +7,7 @@ import static org.quartz.TriggerBuilder.newTrigger;
 import java.util.Date;
 import org.quartz.JobDetail;
 import org.quartz.SchedulerFactory;
+import org.quartz.SimpleTrigger;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
@@ -80,10 +81,10 @@ public class QuartzScheduleMain {
         //创建一个触发器的名称
         Trigger newTrigger = TriggerBuilder
                 .newTrigger()
+                .withIdentity("trigger2", "group2")
                 .withSchedule(cronSchedule(time2))
                 .build();
         sched.rescheduleJob(TriggerKey.triggerKey("trigger1", "group1"),newTrigger);
-
 
         try {
             Thread.sleep(25L * 1000L);

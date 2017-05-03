@@ -13,6 +13,8 @@ import org.quartz.SimpleScheduleBuilder;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
+import org.quartz.impl.calendar.AnnualCalendar;
+import org.quartz.impl.calendar.MonthlyCalendar;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -64,7 +66,7 @@ public class DemoController {
                     .withIntervalInSeconds(2)
                     .withRepeatCount(20)
                     )
-                .build();
+                  .build();
         SchedulerFactory sf = new StdSchedulerFactory();
         Scheduler sched = sf.getScheduler();
 
