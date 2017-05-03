@@ -2,7 +2,6 @@ package com.strat.springboot.Controller.service.quartz;
 
 import java.util.Date;
 
-import org.quartz.JobDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.quartz.Job;
