@@ -2,6 +2,7 @@ package com.strat.springboot.Controller.service.quartz;
 
 import java.util.Date;
 
+import org.quartz.JobDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.quartz.Job;
@@ -22,6 +23,7 @@ public class HelloJob implements Job {
 
     public void execute(JobExecutionContext context)
             throws JobExecutionException {
+        JobDetail jobDetail = context.getJobDetail();
         logger.info("Hello World! - " + new Date());
     }
 }
