@@ -35,6 +35,7 @@ public class MyOkHttpService {
                 log.info("code :" + String.valueOf(response.code()));
                 log.info("response: " + response.body().string() );
             }
+            log.info("return result.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,7 +58,7 @@ public class MyOkHttpService {
                     log.info("latch.countDown(),count:" + latch.getCount());
                 }
             });
-
+        log.info("return result.");
 
 //        try {
 //            log.debug("latch.wait() :start");
