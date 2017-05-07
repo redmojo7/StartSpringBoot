@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * MyOkHttpTest
@@ -45,7 +46,6 @@ public class MyOkHttpTest {
     @Test
     public void testEnqueue(){
         Request request = new Request.Builder().url(url).build();
-        CountDownLatch latch = new CountDownLatch(1);
         client.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
@@ -56,20 +56,16 @@ public class MyOkHttpTest {
                 public void onResponse(Call call, Response response) throws IOException {
                     log.debug("code :" + String.valueOf(response.code()));
                     log.debug("response: " + response.body().string() );
-                    latch.countDown();
-                    log.debug("latch.countDown(),count:" + latch.getCount());
                 }
             });
 
 
         try {
             log.debug("latch.wait() :start");
-            latch.wait();
+            TimeUnit.SECONDS.sleep(5);
             log.debug("latch.wait() :end");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //waiting
-        testExecute();
     }
 }
