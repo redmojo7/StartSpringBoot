@@ -1,10 +1,14 @@
 package com.strat.springboot.Controller;
 
+import com.strat.springboot.Controller.config.LoadLog4J;
+import org.apache.log4j.PropertyConfigurator;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.io.IOException;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -22,5 +26,12 @@ public class DemoApplication {
 		} catch (SchedulerException e) {
 			e.printStackTrace();
 		}
+		// load log4j properties
+		try {
+			LoadLog4J.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 }
