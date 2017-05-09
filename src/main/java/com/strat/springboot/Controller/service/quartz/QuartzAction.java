@@ -22,6 +22,13 @@ import java.util.Date;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 
 /**
+ *
+ * spring 把 quartz 接入用的 org/springframework/scheduling/quartz/SchedulerFactoryBean.java
+ *  所以用它获取的 schedule 不用去start 了。默认启动SchedulerFactoryBean时已经启动了schedule
+ *
+ */
+
+/**
  * QuartzAction
  *
  * @author : Donald Cai

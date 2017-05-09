@@ -6,11 +6,11 @@ package com.strat.springboot.Controller.service.thread.class1;
 /**
  * 通过实现 Runnable 接口实现多线程
  */
-public class TestMiniThread1 implements Runnable {
+public class TestMitiThread1 implements Runnable {
   
   public static void main(String[] args) {
     System.out.println(Thread.currentThread().getName() + " 线程运行开始!");
-    TestMiniThread1 test = new TestMiniThread1();
+    TestMitiThread1 test = new TestMitiThread1();
     Thread thread1 = new Thread(test);
     Thread thread2 = new Thread(test);
     thread1.start();

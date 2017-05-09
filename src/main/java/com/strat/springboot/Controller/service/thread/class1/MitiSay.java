@@ -4,9 +4,10 @@ package com.strat.springboot.Controller.service.thread.class1;
  * Created by Administrator on 2017/5/4.
  */
 class MitiSay extends Thread {
+  
   public MitiSay(String threadName) {
     super(threadName);
-}
+  }
   
   public void run() {
     System.out.println(getName() + " 线程运行开始!");
