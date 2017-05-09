@@ -11,6 +11,7 @@ import org.quartz.SimpleTrigger;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
+import org.quartz.TriggerUtils;
 import org.quartz.impl.StdScheduler;
 import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
@@ -123,6 +124,7 @@ public class QuartzScheduleMain {
         log.info("------- Shutting Down ---------------------");
         sched.shutdown(true);
         log.info("------- Shutdown Complete -----------------");
+//        sched.addCalendar();
     }
 
     public static void main(String[] args) throws Exception {
