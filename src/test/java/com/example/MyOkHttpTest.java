@@ -5,6 +5,7 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.apache.commons.lang3.time.StopWatch;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,17 +31,21 @@ public class MyOkHttpTest {
     private static final String url = "http://publicobject.com/helloworld.txt";
     @Test
     public void testExecute(){
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
         Request request = new Request.Builder().url(url).build();
         Response response;
         try {
             response = client.newCall(request).execute();
             if(response != null && response.isSuccessful()) {
                 log.debug("code :" + String.valueOf(response.code()));
-                log.debug("response: " + response.body().string() );
+                log.debug("response: " + response.body().string());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        stopWatch.split();
+        log.info("cost time : " + stopWatch.getSplitTime()  + " ms");
     }
 
     @Test

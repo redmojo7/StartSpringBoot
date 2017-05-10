@@ -40,7 +40,7 @@ public class ThreadTest {
                 while(flag) {
                     try {
                         log.info("runner1 start wait...");
-                        lock.wait();
+                        lock.wait();//调用wait()会释放对象的锁
                         log.info("runner1 end wait...");
                     } catch (InterruptedException e) {
                         e.printStackTrace();
