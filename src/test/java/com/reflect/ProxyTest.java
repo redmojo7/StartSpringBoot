@@ -13,5 +13,6 @@ public class ProxyTest {
     public static void main(String[] args) {
         IHello hello = FacadeProxy.newMapperProxy(IHello.class);
         System.out.println(hello.say("hello world"));
+
     }
 }
