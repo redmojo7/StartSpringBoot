@@ -1,9 +1,11 @@
 package com.example;
 
+import com.google.common.collect.Maps;
 import com.strat.springboot.Controller.domain.User;
 import com.strat.springboot.Controller.util.SortList;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import org.junit.Test;
 import org.springframework.util.StringUtils;
 
@@ -23,6 +25,10 @@ public class SortListTest {
     System.out.println("getAge : " + StringUtils.collectionToDelimitedString(users,","));
     sortList.sort(users, "getName", "desc");
     System.out.println("getName : " + StringUtils.collectionToDelimitedString(users,","));
+  
+    Map.Entry<Long, String> map = Maps.immutableEntry(200L, "OK!");
+    System.out.println("map : " + map );
+  
   }
   
 }

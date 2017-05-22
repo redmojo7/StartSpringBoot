@@ -1,5 +1,6 @@
 package com.strat.springboot.Controller.domain;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.stereotype.Component;
 
 /**
@@ -35,5 +36,9 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
+    }
+    
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }
