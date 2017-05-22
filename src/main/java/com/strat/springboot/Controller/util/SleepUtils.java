@@ -17,4 +17,12 @@ public class  SleepUtils {
             e.printStackTrace();
         }
     }
+    
+    public static final void milliSecond(long milliSecond) {
+        try {
+            TimeUnit.MILLISECONDS.sleep(milliSecond);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
