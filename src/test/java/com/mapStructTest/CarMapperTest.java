@@ -13,6 +13,9 @@ import org.junit.Test;
  */
 public class CarMapperTest {
   
+  
+  // http://www.tianshouzhi.com/api/tutorials/mapstruct
+  
   @Test
   public void shouldMapCarToDto() {
     //given
@@ -20,11 +23,14 @@ public class CarMapperTest {
     
     //when
     CarDto carDto = CarMapper.INSTANCE.carToCarDto( car );
-    //
+    System.out.println(" carDto : " + carDto);
+    
     //then
     assertThat( carDto ).isNotNull();
     assertThat( carDto.getMake() ).isEqualTo( "Morris" );
     assertThat( carDto.getSeatCount() ).isEqualTo( 5 );
     assertThat( carDto.getType() ).isEqualTo( "SEDAN" );
+    
+
   }
 }
