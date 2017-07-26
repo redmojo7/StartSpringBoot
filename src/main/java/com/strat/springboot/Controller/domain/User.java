@@ -12,8 +12,9 @@ import org.springframework.stereotype.Component;
 @Component("userDomain")
 public class User {
 
-    public String name;
-    private int age;
+    private String name;
+    //用volatile修饰的变量，线程在每次使用变量的时候，都会读取变量修改后的最的值。volatile很容易被误用，用来进行原子性操作。
+    public volatile int age;
 
     public User(){
     }

@@ -2,6 +2,7 @@ package com.atomic;
 
 import com.strat.springboot.Controller.domain.User;
 import java.util.concurrent.atomic.AtomicIntegerArray;
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReference;
 import org.junit.Test;
 
@@ -56,5 +57,14 @@ public class atomicTest {
         System.out.println("user.name = " + atomicUserRef.get().getName());
         System.out.println("user.age = " + atomicUserRef.get().getAge());
         
+    }
+    
+    public static AtomicIntegerFieldUpdater<User> a = AtomicIntegerFieldUpdater.newUpdater(User.class, "age");
+    
+    @Test
+    public void AtomicIntegerFieldUpdaterTest() {
+        User conan = new User("conan", 10);
+        System.out.println("user.age = " + a.getAndIncrement(conan));
+        System.out.println("user.age = " + a.get(conan));
     }
 }
