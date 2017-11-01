@@ -25,10 +25,10 @@ public class createCSV {
     
     private static List<String> names = Lists.newArrayList();
     
-    private static Integer AMOUT = 10000;
+    private static Integer AMOUT = 100000;
     
     private static final String nameFilePath = "C://names.txt";
-    private static final String filePath = "C://JMeterTest.txt";
+    private static final String filePath = "C://JMeterTest.csv";
     
     // private static final String nameFilePath = "src/main/resources/names.txt";
     // private static final String filePath = "src/main/resources/JMeterTest.txt";
