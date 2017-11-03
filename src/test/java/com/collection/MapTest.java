@@ -1,6 +1,6 @@
 package com.collection;
 
-import com.strat.springboot.Controller.domain.Dog;
+import com.strat.springboot.controller.domain.Dog;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;

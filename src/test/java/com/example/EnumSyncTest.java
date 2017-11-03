@@ -1,11 +1,7 @@
 package com.example;
 
-import com.strat.springboot.Controller.enums.SequenceAtomicSingleton;
-import com.strat.springboot.Controller.enums.SequenceLockSingleton;
-import com.strat.springboot.Controller.enums.SequenceSingleton;
-import com.strat.springboot.Controller.enums.SerialNumberEnum;
-import com.strat.springboot.Controller.util.SleepUtils;
-import java.util.concurrent.TimeUnit;
+import com.strat.springboot.controller.enums.SerialNumberEnum;
+import com.strat.springboot.controller.util.SleepUtils;
 
 /**
  * Created by Administrator on 2017/5/16.

@@ -1,8 +1,8 @@
 package com.example;
 
 import com.google.common.collect.Maps;
-import com.strat.springboot.Controller.domain.User;
-import com.strat.springboot.Controller.util.SortList;
+import com.strat.springboot.controller.domain.User;
+import com.strat.springboot.controller.util.SortList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

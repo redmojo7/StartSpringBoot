@@ -2,10 +2,10 @@ package com.mapStructTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.strat.springboot.Controller.mapStructs.Car;
-import com.strat.springboot.Controller.mapStructs.CarDto;
-import com.strat.springboot.Controller.mapStructs.CarType;
-import com.strat.springboot.Controller.mapStructs.CarMapper;
+import com.strat.springboot.controller.mapStructs.Car;
+import com.strat.springboot.controller.mapStructs.CarDto;
+import com.strat.springboot.controller.mapStructs.CarType;
+import com.strat.springboot.controller.mapStructs.CarMapper;
 import org.junit.Test;
 
 /**

@@ -4,7 +4,7 @@ import com.google.maps.GeoApiContext;
 import com.google.maps.PendingResult;
 import com.google.maps.TimeZoneApi;
 import com.google.maps.model.LatLng;
-import com.strat.springboot.Controller.dto.TimezoneDTO;
+import com.strat.springboot.controller.dto.TimezoneDTO;
 
 import java.util.Locale;
 import java.util.TimeZone;

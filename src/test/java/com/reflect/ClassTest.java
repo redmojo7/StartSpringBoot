@@ -1,6 +1,6 @@
 package com.reflect;
 
-import com.strat.springboot.Controller.domain.User;
+import com.strat.springboot.controller.domain.User;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -19,7 +19,7 @@ public class ClassTest {
         User user = new User();
         Class c1 = user.getClass();
         Class c2 = User.class;
-        Class c3 = Class.forName("com.strat.springboot.Controller.domain.User");
+        Class c3 = Class.forName("com.strat.springboot.controller.domain.User");
         System.out.println(c1==c2);
         System.out.println(c2==c3);
         ///通过newInstance方法创建一个user实例对象，使用newInstance方法必须要有一个公共的构造方法

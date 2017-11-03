@@ -1,6 +1,6 @@
 package com.example;
 
-import com.strat.springboot.Controller.util.SleepUtils;
+import com.strat.springboot.controller.util.SleepUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

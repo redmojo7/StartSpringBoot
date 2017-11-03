@@ -1,6 +1,6 @@
 package com.example;
 
-import com.strat.springboot.Controller.util.SleepUtils;
+import com.strat.springboot.controller.util.SleepUtils;
 
 /**
  * ThreadInterruptTest

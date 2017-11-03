@@ -1,7 +1,7 @@
 package com.reflect;
 
-import com.strat.springboot.Controller.domain.inter.IHello;
-import com.strat.springboot.Controller.proxy.FacadeProxy;
+import com.strat.springboot.controller.domain.inter.IHello;
+import com.strat.springboot.controller.proxy.FacadeProxy;
 
 /**
  * ProxyTest

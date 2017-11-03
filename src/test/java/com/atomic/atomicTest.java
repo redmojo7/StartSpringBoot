@@ -1,6 +1,6 @@
 package com.atomic;
 
-import com.strat.springboot.Controller.domain.User;
+import com.strat.springboot.controller.domain.User;
 import java.util.concurrent.atomic.AtomicIntegerArray;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReference;
