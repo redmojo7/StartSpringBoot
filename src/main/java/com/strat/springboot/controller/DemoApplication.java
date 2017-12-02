@@ -1,14 +1,13 @@
 package com.strat.springboot.controller;
 
 import com.strat.springboot.controller.config.LoadLog4J;
-import com.strat.springboot.controller.domain.Dog;
-import com.strat.springboot.controller.domain.User;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 
 import java.io.IOException;
 
@@ -34,6 +33,9 @@ public class DemoApplication {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+//		List<ApplicationListener> loadFactories = SpringFactoriesLoader.loadFactories(ApplicationListener.class, null);
+//		System.out.println(loadFactories.size());
 
 		/*
 		 * example 1
