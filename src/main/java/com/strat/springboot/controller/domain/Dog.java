@@ -1,11 +1,17 @@
 package com.strat.springboot.controller.domain;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * Created by Administrator on 2017/6/2.
  */
 public class Dog {
+
+  private Logger log = LoggerFactory.getLogger(Dog.class);
+
   String color;
 
   public Dog() {
@@ -39,6 +45,7 @@ public class Dog {
   }
 
   public void print() {
-    System.out.printf("[Dog] : " + ToStringBuilder.reflectionToString(this));
+    log.info("[Dog] : " + ToStringBuilder.reflectionToString(this));
+    //System.out.printf("[Dog] : " + ToStringBuilder.reflectionToString(this));
   }
 }

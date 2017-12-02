@@ -17,7 +17,7 @@ public class DemoApplication {
 
 	public static void main(String[] args) {
 
-		//SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(DemoApplication.class, args);
 
 		// Grab the Scheduler instance from the Factory
 		Scheduler scheduler = null;
@@ -36,18 +36,21 @@ public class DemoApplication {
 		}
 
 		/*
-		 *
+		 * example 1
 		 */
-		SpringApplication springApplication = new SpringApplication(DemoApplication.class);
-		springApplication.setWebEnvironment(false);
-		ConfigurableApplicationContext noneMessageConfigurableApplicationContext = springApplication.run("--logging.level.root=ERROR","--endpoints.enabled=false");
-		try {
-			noneMessageConfigurableApplicationContext.getBean(Dog.class).print();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		ConfigurableApplicationContext configurableApplicationContext = springApplication.run("--message=haha", "--logging.level.root=ERROR");
-		configurableApplicationContext.getBean(Dog.class).print();
+//		SpringApplication springApplication = new SpringApplication(DemoApplication.class);
+//		springApplication.setWebEnvironment(false);
+//		ConfigurableApplicationContext noneMessageConfigurableApplicationContext = springApplication.run(args,"--logging.level.root=ERROR","--endpoints.enabled=false");
+//		try {
+//			noneMessageConfigurableApplicationContext.getBean(Dog.class).print();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		/*
+		 * example 2
+		 */
+//		ConfigurableApplicationContext configurableApplicationContext = springApplication.run(args," --message=haha", "--logging.level.root=ERROR");
+//		configurableApplicationContext.getBean(Dog.class).print();
 
 	}
 }

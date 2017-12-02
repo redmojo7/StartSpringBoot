@@ -1,1 +1,3 @@
-message: Hello,Neymar!
+name: myTest
+server:
+  port: 8080
