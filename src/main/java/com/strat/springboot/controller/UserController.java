@@ -24,7 +24,7 @@ public class UserController {
   // @Autowired
   // private announceService announces;
   
-  @RequestMapping("/")
+  @RequestMapping(value = "/", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
   public String sayhi(){
     
     
