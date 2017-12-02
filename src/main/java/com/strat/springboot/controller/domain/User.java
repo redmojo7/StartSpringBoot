@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @author : Donald Cai
  * @date :   2017/5/14.
  */
-@Component("userDomain")
+@Component("user")
 public class User {
 
     private String name;
@@ -41,5 +41,9 @@ public class User {
     
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
+    }
+
+    public void print() {
+        System.out.printf("[User] : " + ToStringBuilder.reflectionToString(this));
     }
 }

@@ -1,11 +1,17 @@
 package com.strat.springboot.controller.domain;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * Created by Administrator on 2017/6/2.
  */
 public class Dog {
   String color;
-  
+
+  public Dog() {
+    color="yellow";
+  }
+
   public Dog(String c) {
     color = c;
   }
@@ -30,5 +36,9 @@ public class Dog {
   @Override
   public int hashCode() {
     return color.length();
+  }
+
+  public void print() {
+    System.out.printf("[Dog] : " + ToStringBuilder.reflectionToString(this));
   }
 }
