@@ -1,5 +1,7 @@
 package com.strat.springboot.controller.domain;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * @author : Donald
  * @date : 2017/12/5 15:57.
@@ -28,5 +30,10 @@ public class DemoObj {
     }
     public void setName(String name) {
         this.name = name;
+    }
+    
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }
