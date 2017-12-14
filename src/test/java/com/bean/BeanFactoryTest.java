@@ -23,19 +23,20 @@ public class BeanFactoryTest {
         /*
          *   1  一般应用
          */
-        // ApplicationContext context= new ClassPathXmlApplicationContext("applicationContext.xml");
-        // DemoObj myBean= (DemoObj) context.getBean(DemoObj.class);
+        ApplicationContext context= new ClassPathXmlApplicationContext("applicationContext.xml");
+        DemoObj myBean1= (DemoObj) context.getBean(DemoObj.class);
     
         /*
          *   2  单纯为了测试
          */
         BeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource(CONTEXT_XML));
     
-        DemoObj myBean= (DemoObj) beanFactory.getBean(DemoObj.class);
+        DemoObj myBean2= (DemoObj) beanFactory.getBean(DemoObj.class);
     
         /*
          *  print it
          */
-        System.out.println("\r\n myBean : " + myBean.toString() + "\r\n");
+        System.out.println("\r\n myBean1 : " + myBean1.toString() + "\r\n");
+        System.out.println("\r\n myBean2 : " + myBean2.toString() + "\r\n");
     }
 }
