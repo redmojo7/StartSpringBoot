@@ -2,8 +2,11 @@ package com.bean;
 
 import com.strat.springboot.controller.domain.DemoObj;
 import org.junit.Test;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 
 /**
  * @author : Donald
@@ -12,12 +15,27 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class BeanFactoryTest {
     
+    private final String CONTEXT_XML = "applicationContext.xml";
+    
     @Test
     public void testSimpleLoad() {
     
-        ApplicationContext context= new ClassPathXmlApplicationContext("applicationContext.xml");
-        DemoObj myBean= (DemoObj) context.getBean(DemoObj.class);
-        myBean.getName();
-        System.out.println("\r\nmyBean : " + myBean.toString());
+        /*
+         *   1  一般应用
+         */
+        // ApplicationContext context= new ClassPathXmlApplicationContext("applicationContext.xml");
+        // DemoObj myBean= (DemoObj) context.getBean(DemoObj.class);
+    
+        /*
+         *   2  单纯为了测试
+         */
+        BeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource(CONTEXT_XML));
+    
+        DemoObj myBean= (DemoObj) beanFactory.getBean(DemoObj.class);
+    
+        /*
+         *  print it
+         */
+        System.out.println("\r\n myBean : " + myBean.toString() + "\r\n");
     }
 }
