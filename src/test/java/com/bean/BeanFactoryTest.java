@@ -13,7 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class BeanFactoryTest {
     
     @Test
-    public void testSimapleLoad() {
+    public void testSimpleLoad() {
     
         ApplicationContext context= new ClassPathXmlApplicationContext("applicationContext.xml");
         DemoObj myBean= (DemoObj) context.getBean(DemoObj.class);
