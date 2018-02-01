@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author : Donald Cai
  * @date :   2018-02-01.
+ * @refer： http://blog.csdn.net/albertfly/article/details/51971086
  */
 public class LoadingCacheTest {
 
