@@ -1,12 +1,22 @@
 package com.concurrent;
 
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
+import com.google.common.cache.RemovalListener;
+import com.google.common.cache.RemovalNotification;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.UUID;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  *    方法中建立一个核心线程数为30个，缓冲队列有10个的线程池。每个线程任务，执行时会先睡眠3秒，保证提交10任务时，
@@ -17,7 +27,29 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @description :
  */
 public class CustomThreadPoolExecutor {
+
+    private static LoadingCache<String, String> loadingCache =
+            CacheBuilder.newBuilder()
+                    .concurrencyLevel(10)   //设置并发级别为10，并发级别是指可以同时写缓存的线程数
+                    .expireAfterWrite(8, TimeUnit.SECONDS)
+                    .initialCapacity(10)    //设置缓存容器的初始容量为10
+                    .maximumSize(100)       //设置缓存最大容量为100，超过100之后就会按照LRU最近虽少使用算法来移除缓存项
+                    .removalListener(new RemovalListener<Object, Object>() {
+                        @Override
+                        public void onRemoval(RemovalNotification<Object, Object> notification) {
+                            System.out.println(notification.getKey() + " was removed, cause is " + notification.getCause());
+                        }
+                    })
+                    .build(new CacheLoader<String, String>() {
+                        @Override
+                        public String load(String key) throws Exception {
+                            return "";
+                        }
+                    });
+
     private ThreadPoolExecutor pool = null;
+
+    private static final ReentrantLock lock = new ReentrantLock();
     
     
     /**
@@ -96,7 +128,10 @@ public class CustomThreadPoolExecutor {
                 @Override
                 public void run() {
                     try {
-                        Thread.sleep(3000);
+                        Thread.sleep(3);
+//                        test();
+//                        fetchTokenPlanOne();
+                        fetchTokenPlanTwo();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -115,5 +150,92 @@ public class CustomThreadPoolExecutor {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        System.out.println("The last one is :");
+        fetchTokenPlanTwo();
+    }
+
+    public static void test() {
+        boolean expired = Boolean.TRUE;
+        final String login = "as@as.com";
+        String result= "";
+        try {
+            if (expired) {
+                /*
+                 *  old RefreshToken is expired
+                 */
+                synchronized (CustomThreadPoolExecutor.class) {
+                    if (StringUtils.isBlank(result)) {
+                    /*
+                     * create a new RefreshToken
+                     */
+                        result = UUID.randomUUID().toString();
+                        System.out.println("create a new RefreshToken, value = " + result);
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("loadingCache get failed for " + login + e.getMessage());
+        }
+        System.out.println("loadingCache.result = " + result);
+    }
+
+    public static void fetchTokenPlanOne() {
+        boolean expired = Boolean.TRUE;
+        final String login = "as@as.com";
+        String result= "";
+        try {
+            if (expired) {
+                /*
+                 *  old RefreshToken is expired
+                 */
+                synchronized (CustomThreadPoolExecutor.class) {
+                    result = loadingCache.get(login);
+                    if (StringUtils.isBlank(result)) {
+                    /*
+                     * create a new RefreshToken
+                     */
+                        result = UUID.randomUUID().toString();
+                        System.out.println("create a new RefreshToken, value = " + result);
+                        loadingCache.put(login, result);
+                    }
+                }
+            }
+
+        } catch (ExecutionException e) {
+            System.out.println("loadingCache get failed for " + login + e.getMessage());
+        }
+        System.out.println("loadingCache.result = " + result);
+    }
+
+    public static void fetchTokenPlanTwo() {
+        boolean expired = Boolean.TRUE;
+        final String login = "as@as.com";
+        String result= "";
+        try {
+            if (expired) {
+                /*
+                 *  old RefreshToken is expired
+                 */
+                lock.lock();
+                try {
+                    result = loadingCache.get(login);
+                    if (StringUtils.isBlank(result)) {
+                    /*
+                     * create a new RefreshToken
+                     */
+                        result = UUID.randomUUID().toString();
+                        System.out.println("create a new RefreshToken, value = " + result);
+                        loadingCache.put(login, result);
+                    }
+                } finally {
+                    lock.unlock();
+                }
+            }
+
+        } catch (ExecutionException e) {
+            System.out.println("loadingCache get failed for " + login + e.getMessage());
+        }
+        System.out.println("loadingCache.result = " + result);
     }
 }
