@@ -1,9 +1,9 @@
 name: myTest
 server:
-  port: 8080
+  port: 8090
 spring:
   datasource:
     dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-    url: jdbc:mysql://127.0.0.1:3306/nextdemo
+    url: jdbc:mysql://127.0.0.1:3306/nextdemo_im
     username: root
     password: root
