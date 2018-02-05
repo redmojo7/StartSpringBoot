@@ -5,6 +5,8 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.cache.RemovalListener;
 import com.google.common.cache.RemovalNotification;
+import com.google.common.collect.Lists;
+import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.UUID;
@@ -120,10 +122,11 @@ public class CustomThreadPoolExecutor {
         CustomThreadPoolExecutor exec = new CustomThreadPoolExecutor();
         // 1.初始化
         exec.init();
-        
+        List<String> logins = Lists.newArrayList("as@as.com", "next@qq.com", "doinad@sina.cn");
         ExecutorService pool = exec.getCustomThreadPoolExecutor();
         for(int i=1; i<100; i++) {
             System.out.println("提交第" + i + "个任务!");
+            final String login = logins.get(i%3);
             pool.execute(new Runnable() {
                 @Override
                 public void run() {
@@ -131,7 +134,7 @@ public class CustomThreadPoolExecutor {
                         Thread.sleep(3);
 //                        test();
 //                        fetchTokenPlanOne();
-                        fetchTokenPlanTwo();
+                        fetchTokenPlanTwo(login);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -151,7 +154,11 @@ public class CustomThreadPoolExecutor {
             e.printStackTrace();
         }
         System.out.println("The last one is :");
-        fetchTokenPlanTwo();
+        logins.forEach(login -> {
+            fetchTokenPlanTwo(login);
+            System.out.println();
+        });
+        
     }
 
     public static void test() {
@@ -208,9 +215,8 @@ public class CustomThreadPoolExecutor {
         System.out.println("loadingCache.result = " + result);
     }
 
-    public static void fetchTokenPlanTwo() {
+    public static void fetchTokenPlanTwo(String login) {
         boolean expired = Boolean.TRUE;
-        final String login = "as@as.com";
         String result= "";
         try {
             if (expired) {
@@ -236,6 +242,6 @@ public class CustomThreadPoolExecutor {
         } catch (ExecutionException e) {
             System.out.println("loadingCache get failed for " + login + e.getMessage());
         }
-        System.out.println("loadingCache.result = " + result);
+        System.out.println("loadingCache.result = " + result + " for user = " + login);
     }
 }
